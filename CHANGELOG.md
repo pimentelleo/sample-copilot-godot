@@ -7,7 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+### Added - Visual & Control Improvements (2026-02-09)
+- Retro PS1/Boltgun visual style with custom shader
+- Vertex snapping and affine texture mapping for authentic PS1 look
+- Distance-based color quantization
+- Atmospheric fog system
+- Three material presets (enemy, world, weapon)
+- Improved enemy models with humanoid structure (body, head, weapon)
+- Enhanced Boltgun weapon model with realistic components
+- Smooth joystick return to center
+- Visual feedback system for touch buttons
+- Dead zone system for camera controls
+
+### Changed - Mobile & Camera (2026-02-09)
+- Fixed landscape orientation (sensor landscape mode 6)
+- Increased resolution to 1920x1080 for better widescreen support
+- Improved mouse sensitivity (0.003 → 0.002)
+- Added separate mobile look sensitivity (1.5x multiplier)
+- Increased joystick size (200x200 → 250x250)
+- Increased button sizes (80x80 → 100x100)
+- Shoot button now 120x120 for easier access
+- Better button spacing and positioning
+- Enhanced visual design with outlines and layers
+- Improved camera look sensitivity with dead zone (5.0px)
+
+### Fixed - UX Issues (2026-02-09)
+- Landscape orientation now works correctly on mobile
+- Camera no longer oversensitive on mobile
+- Touch controls more responsive and usable
+- Better visual feedback when pressing buttons
+- Joystick returns smoothly instead of snapping
+
+### Visual Style - Retro Aesthetic (2026-02-09)
+- Dark grimdark color scheme matching Warhammer 40K
+- Purple/dark sky colors
+- Fog with atmospheric color
+- Vertex jitter for PS1 authenticity
+- Low-poly geometric enemies
+- Consistent retro material system across all objects
+
+### Added - Previous Mobile Support
 - Full mobile device support with touch controls
 - Virtual joystick for movement on mobile
 - Touch buttons for all game actions (Fire, Jump, Reload, Dash)
@@ -21,20 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Touch input emulation for desktop testing
 - Landscape orientation support for mobile
 - Immersive fullscreen mode on Android
-
-### Changed
-- Player controller now supports both keyboard/mouse and touch input
-- HUD dynamically adjusts text size for mobile devices
-- Display settings optimized for mobile aspect ratios
-- Input system refactored to work across platforms
-- Test level now includes mobile controls
-
-### Documentation
-- Added ANDROID_BUILD.md with complete build instructions
-- Added MOBILE_CONTROLS.md with control documentation
-- Added MOBILE_UPDATE_SUMMARY.md with technical details
-- Updated README.md with mobile information and controls
-- Added .gitattributes for better Git file handling
 
 ## [0.1.0] - 2026-02-09
 

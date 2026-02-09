@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7wxr2qxn7jyf"]
+[gd_scene load_steps=11 format=3 uid="uid://c7wxr2qxn7jyf"]
 
 [ext_resource type="PackedScene" uid="uid://c3bipcm4q7n2u" path="res://scenes/player.tscn" id="1_e3jtc"]
 [ext_resource type="PackedScene" uid="uid://bugoe02u3t6g4" path="res://scenes/enemies/enemy.tscn" id="2_0d0fa"]
 [ext_resource type="PackedScene" uid="uid://bh8c5n2jc5gup" path="res://scenes/ui/hud.tscn" id="3_j0akm"]
 [ext_resource type="PackedScene" uid="uid://dh56y8rbgn2lh" path="res://scenes/ui/mobile_controls.tscn" id="4_mobile"]
+[ext_resource type="Material" uid="uid://bqm7dn4k2xvph" path="res://materials/world_material.tres" id="5_world_mat"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5gol"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.2, 0.15, 0.25, 1)
+sky_horizon_color = Color(0.4, 0.3, 0.35, 1)
+ground_bottom_color = Color(0.15, 0.1, 0.15, 1)
+ground_horizon_color = Color(0.4, 0.3, 0.35, 1)
 
 [sub_resource type="Sky" id="Sky_7lk2v"]
 sky_material = SubResource("ProceduralSkyMaterial_j5gol")
@@ -16,6 +19,11 @@ sky_material = SubResource("ProceduralSkyMaterial_j5gol")
 background_mode = 2
 sky = SubResource("Sky_7lk2v")
 tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.3, 0.25, 0.3, 1)
+fog_density = 0.01
+fog_depth_begin = 20.0
+fog_depth_end = 80.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_uq8dd"]
 size = Vector3(50, 1, 50)
@@ -38,6 +46,7 @@ collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_uq8dd")
+surface_material_override/0 = ExtResource("5_world_mat")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_r0s6f")

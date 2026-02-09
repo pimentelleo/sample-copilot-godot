@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8xvnm2j3d4wp"]
+
+[ext_resource type="Shader" path="res://shaders/retro_ps1.gdshader" id="1_shader"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/albedo = Color(0.8, 0.1, 0.1, 1)
+shader_parameter/vertex_snap = 0.03
+shader_parameter/affine_texture_mapping = 0.7
+shader_parameter/use_texture = false

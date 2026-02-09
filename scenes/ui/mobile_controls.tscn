@@ -22,10 +22,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -220.0
-offset_right = 220.0
-offset_bottom = -20.0
+offset_left = 30.0
+offset_top = -280.0
+offset_right = 280.0
+offset_bottom = -30.0
 grow_vertical = 0
 mouse_filter = 2
 
@@ -54,42 +54,42 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
+offset_left = -140.0
+offset_top = -140.0
 offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 action_name = "shoot"
-button_text = "FIRE"
+button_text = "🔫"
 
 [node name="JumpButton" parent="MobileControls/RightSide" instance=ExtResource("3_k5jvu")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_top = 20.0
+offset_left = -140.0
+offset_top = 30.0
 offset_right = -20.0
-offset_bottom = 100.0
+offset_bottom = 150.0
 grow_horizontal = 0
 action_name = "jump"
-button_text = "JUMP"
+button_text = "↑"
 
 [node name="ReloadButton" parent="MobileControls/RightSide" instance=ExtResource("3_k5jvu")]
 layout_mode = 1
-offset_left = 100.0
-offset_top = 20.0
-offset_right = 180.0
-offset_bottom = 100.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 130.0
+offset_bottom = 130.0
 action_name = "reload"
-button_text = "RLD"
+button_text = "⟲"
 
 [node name="DashButton" parent="MobileControls/RightSide" instance=ExtResource("3_k5jvu")]
 layout_mode = 1
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = 150.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 130.0
 action_name = "dash"
-button_text = "DASH"
+button_text = "⚡"

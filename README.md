@@ -12,6 +12,14 @@ Este é um projeto base para um shooter em primeira pessoa inspirado no estilo r
 
 ## ✨ Características
 
+### Estilo Visual Retro PS1/Boltgun
+- **Shader custom** com vertex snapping (jitter PS1)
+- **Affine texture mapping** (perspectiva incorreta do PS1)
+- **Quantização de cores** baseada em distância
+- **Névoa atmosférica** escura grimdark
+- **Materiais low-poly** com geometria simples
+- **Paleta de cores** dark/roxa inspirada em Warhammer 40K
+
 ### Sistema de Jogador
 - **Movimento FPS completo**: WASD para movimento, mouse para olhar
 - **Sistema de dash**: Shift para sprint, Shift duplo para dash
@@ -44,16 +52,22 @@ Este é um projeto base para um shooter em primeira pessoa inspirado no estilo r
 - **HUD adaptável** que se ajusta automaticamente para mobile
 
 ### Controles Mobile
-- **Joystick virtual** para movimento (lado esquerdo)
-- **Botões touch** para todas as ações:
-  - Fire (atirar) - botão grande inferior direito
-  - Jump (pular) - superior direito
-  - Reload (recarregar) - superior centro
-  - Dash - superior esquerdo
-- **Touch and drag** na metade direita da tela para olhar ao redor
+- **Joystick virtual melhorado** para movimento (lado esquerdo, 250x250)
+- **Retorno suave ao centro** com animação
+- **Dead zone configurável** para precisão
+- **Botões touch grandes** para todas as ações:
+  - Fire 🔫 (atirar) - botão grande 120x120 inferior direito
+  - Jump ↑ (pular) - superior direito 120x120
+  - Reload ⟲ (recarregar) - superior esquerda 100x100
+  - Dash ⚡ - superior centro 100x100
+- **Touch and drag melhorado** com dead zone de 5px
+- **Feedback visual** ao pressionar botões
 - **Detecção automática** de plataforma (mostra controles apropriados)
+- **Sensibilidade ajustável** separada para desktop e mobile
 
 ### Sistemas Adicionais
+- **Shader system retro**: Estilo visual PS1/Boltgun configurável
+- **Material system**: 3 materiais pré-configurados para diferentes objetos
 - **Sistema de pickups**: Vida, armadura e munição
 - **Sistema de projéteis**: Para armas que disparam projéteis físicos
 - **Game Manager**: Gerenciamento de pontuação, kills e progresso
@@ -241,12 +255,23 @@ godot --export-release "Android" ./builds/android/wh40k-boltgun.apk
 - [ ] Criar sistema de níveis/campanha
 - [ ] Implementar sistema de save/load
 - [ ] Adicionar menu de opções (gráficos, áudio, controles)
-- [ ] Melhorar texturas e modelos 3D
-- [ ] Adicionar animações de armas
-- [ ] Implementar sistema de glory kills (execuções)
+- [ ] Magora usa um **shader custom retro** inspirado em Warhammer 40K Boltgun e jogos PS1:
 
-## 🎨 Estilo Visual
+### Características do Estilo Retro:
+- **Vertex Snapping** - Vértices "tremem" como no PS1
+- **Affine Texture Mapping** - Perspectiva incorreta autêntica
+- **Color Quantization** - Paleta de cores reduzida
+- **Atmospheric Fog** - Névoa escura grimdark
+- **Low-poly Geometry** - Modelos geométricos simples
+- **Dark Palette** - Cores roxas/escuras do Warhammer 40K
 
+### Configuração:
+O shader é totalmente configurável. Veja os materiais em `materials/`:
+- `enemy_material.tres` - Para inimigos (vermelho escuro)
+- `world_material.tres` - Para cenário (cinza escuro)
+- `player_weapon_material.tres` - Para armas (cinza metálico)
+
+Ajuste parâmetros como `vertex_snap` e `affine_texture_mapping` para controlar a intensidade do efeito retro.
 O jogo busca replicar o estilo retro de boomer shooters:
 - Texturas low-poly e pixeladas
 - Cores vibrantes e alto contraste

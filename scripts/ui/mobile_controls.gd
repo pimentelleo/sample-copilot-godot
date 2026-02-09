@@ -9,7 +9,8 @@ extends CanvasLayer
 var joystick_output: Vector2 = Vector2.ZERO
 var look_touch_index: int = -1
 var look_start_pos: Vector2 = Vector2.ZERO
-var look_sensitivity: float = 0.002
+var look_sensitivity: float = 0.003
+var look_deadzone: float = 5.0
 
 signal look_moved(delta: Vector2)
 
@@ -23,7 +24,7 @@ func _ready():
 		visible = false
 
 func _input(event):
-	# Handle look (right side of screen)
+	# Handle look (right side of screen) - improved with deadzone
 	if event is InputEventScreenTouch:
 		var screen_center = get_viewport().get_visible_rect().size.x / 2
 		
@@ -36,9 +37,11 @@ func _input(event):
 	
 	elif event is InputEventScreenDrag:
 		if event.index == look_touch_index:
-			var delta = (event.position - look_start_pos) * look_sensitivity
-			look_start_pos = event.position
-			emit_signal("look_moved", delta)
+			var drag_distance = event.position.distance_to(look_start_pos)
+			if drag_distance > look_deadzone:
+				var delta = (event.position - look_start_pos) * look_sensitivity
+				look_start_pos = event.position
+				emit_signal("look_moved", delta)
 
 func _on_joystick_moved(direction: Vector2):
 	joystick_output = direction

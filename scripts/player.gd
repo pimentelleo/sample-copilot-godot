@@ -8,7 +8,8 @@ extends CharacterBody3D
 @export var dash_duration: float = 0.2
 
 # Mouse sensitivity
-@export var mouse_sensitivity: float = 0.003
+@export var mouse_sensitivity: float = 0.002
+@export var mobile_look_sensitivity: float = 1.5
 
 # Camera references
 @onready var camera: Camera3D = $Head/Camera3D
@@ -66,9 +67,9 @@ func _input(event):
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_mobile_look_moved(delta: Vector2):
-	# Mobile touch look
-	rotate_y(-delta.x * 100)
-	head.rotate_x(-delta.y * 100)
+	# Mobile touch look with adjustable sensitivity
+	rotate_y(-delta.x * mobile_look_sensitivity * 100)
+	head.rotate_x(-delta.y * mobile_look_sensitivity * 100)
 	head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2)
 
 func _physics_process(delta: float) -> void:

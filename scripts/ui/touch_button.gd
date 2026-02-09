@@ -40,7 +40,10 @@ func _input(event):
 				_on_release()
 
 func _on_press():
-	color_rect.color = Color(0.8, 0.8, 0.8, 0.7)
+	color_rect.color = Color(0.5, 0.5, 0.5, 0.8)
+	var outline = get_node_or_null("Outline")
+	if outline:
+		outline.color = Color(0.7, 0.7, 0.7, 0.9)
 	emit_signal("button_pressed")
 	
 	# Simulate action press
@@ -48,7 +51,10 @@ func _on_press():
 		Input.action_press(action_name)
 
 func _on_release():
-	color_rect.color = Color(0.3, 0.3, 0.3, 0.5)
+	color_rect.color = Color(0.15, 0.15, 0.15, 0.5)
+	var outline = get_node_or_null("Outline")
+	if outline:
+		outline.color = Color(0.3, 0.3, 0.3, 0.7)
 	emit_signal("button_released")
 	
 	# Simulate action release

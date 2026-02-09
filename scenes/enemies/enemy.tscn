@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bugoe02u3t6g4"]
+[gd_scene load_steps=7 format=3 uid="uid://bugoe02u3t6g4"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_qacbo"]
+[ext_resource type="Material" uid="uid://c8xvnm2j3d4wp" path="res://materials/enemy_material.tres" id="2_enemy_mat"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6vfg7"]
 radius = 0.5
 height = 2.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wt0sg"]
-radius = 0.5
-height = 2.0
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.8, 1.4, 0.6)
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+radius = 0.35
+height = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_weapon"]
+size = Vector3(0.2, 0.2, 0.8)
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 collision_layer = 4
@@ -19,10 +26,20 @@ script = ExtResource("1_qacbo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6vfg7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_wt0sg")
-skeleton = NodePath("../..")
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("BoxMesh_body")
+surface_material_override/0 = ExtResource("2_enemy_mat")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+mesh = SubResource("SphereMesh_head")
+surface_material_override/0 = ExtResource("2_enemy_mat")
+
+[node name="Weapon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.2, -0.4)
+mesh = SubResource("BoxMesh_weapon")
+surface_material_override/0 = ExtResource("2_enemy_mat")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0

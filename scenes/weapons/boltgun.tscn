@@ -1,20 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmh6l1u0x2ynb"]
+[gd_scene load_steps=7 format=3 uid="uid://dmh6l1u0x2ynb"]
 
 [ext_resource type="Script" path="res://scripts/weapons/boltgun.gd" id="1_s4jpe"]
+[ext_resource type="Material" uid="uid://c2y8vh3m4kxnp" path="res://materials/player_weapon_material.tres" id="2_weapon_mat"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_h5dyc"]
-size = Vector3(0.1, 0.1, 0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_main"]
+size = Vector3(0.15, 0.2, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_barrel"]
+size = Vector3(0.08, 0.08, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_grip"]
+size = Vector3(0.1, 0.25, 0.1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qyn2f"]
-radius = 0.05
-height = 0.1
+radius = 0.08
+height = 0.16
 
 [node name="Boltgun" type="Node3D"]
 script = ExtResource("1_s4jpe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="WeaponBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
-mesh = SubResource("BoxMesh_h5dyc")
+mesh = SubResource("BoxMesh_main")
+surface_material_override/0 = ExtResource("2_weapon_mat")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.7)
+mesh = SubResource("BoxMesh_barrel")
+surface_material_override/0 = ExtResource("2_weapon_mat")
+
+[node name="Grip" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0.1)
+mesh = SubResource("BoxMesh_grip")
+surface_material_override/0 = ExtResource("2_weapon_mat")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -100)

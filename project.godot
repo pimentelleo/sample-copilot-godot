@@ -18,13 +18,13 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/size/resizable=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/handheld/orientation=1
+window/handheld/orientation=6
 
 [input]
 
@@ -102,6 +102,8 @@ textures/canvas_textures/default_texture_filter=0
 anti_aliasing/quality/msaa_3d=2
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.15, 0.12, 0.18, 1)
+anti_aliasing/quality/screen_space_aa=1
 
 [input_devices]
 

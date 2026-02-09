@@ -1,7 +1,8 @@
 extends Control
 
-@export var dead_zone: float = 10.0
-@export var max_distance: float = 80.0
+@export var dead_zone: float = 5.0
+@export var max_distance: float = 100.0
+@export var return_speed: float = 15.0
 
 @onready var base: Control = $Base
 @onready var tip: Control = $Base/Tip
@@ -9,12 +10,28 @@ extends Control
 var is_pressed: bool = false
 var output: Vector2 = Vector2.ZERO
 var touch_index: int = -1
+var tip_position: Vector2 = Vector2.ZERO
 
 signal joystick_moved(direction: Vector2)
 
 func _ready():
 	# Make sure we can receive input
 	set_process_input(true)
+	set_process(true)
+
+func _process(delta):
+	# Smoothly return joystick to center when not pressed
+	if not is_pressed:
+		tip_position = tip_position.move_toward(Vector2.ZERO, return_speed * max_distance * delta)
+		tip.position = tip_position
+		
+		if tip_position.length() < dead_zone:
+			output = Vector2.ZERO
+		else:
+			output = tip_position / max_distance
+		
+		if output != Vector2.ZERO:
+			emit_signal("joystick_moved", output)
 
 func _input(event):
 	# Handle touch events
@@ -48,7 +65,8 @@ func _update_joystick(touch_pos: Vector2):
 		distance = max_distance
 	
 	# Update tip position
-	tip.position = direction
+	tip_position = direction
+	tip.position = tip_position
 	
 	# Calculate output (normalized)
 	if distance > dead_zone:
@@ -59,9 +77,9 @@ func _update_joystick(touch_pos: Vector2):
 	emit_signal("joystick_moved", output)
 
 func _reset_joystick():
-	tip.position = Vector2.ZERO
-	output = Vector2.ZERO
-	emit_signal("joystick_moved", Vector2.ZERO)
+	# Don't instantly reset, let _process handle smooth return
+	is_pressed = false
+	touch_index = -1
 
 func get_output() -> Vector2:
 	return output
