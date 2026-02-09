@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7wxr2qxn7jyf"]
+
+[ext_resource type="PackedScene" uid="uid://c3bipcm4q7n2u" path="res://scenes/player.tscn" id="1_e3jtc"]
+[ext_resource type="PackedScene" uid="uid://bugoe02u3t6g4" path="res://scenes/enemies/enemy.tscn" id="2_0d0fa"]
+[ext_resource type="PackedScene" uid="uid://bh8c5n2jc5gup" path="res://scenes/ui/hud.tscn" id="3_j0akm"]
+[ext_resource type="PackedScene" uid="uid://dh56y8rbgn2lh" path="res://scenes/ui/mobile_controls.tscn" id="4_mobile"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5gol"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7lk2v"]
+sky_material = SubResource("ProceduralSkyMaterial_j5gol")
+
+[sub_resource type="Environment" id="Environment_dqwfb"]
+background_mode = 2
+sky = SubResource("Sky_7lk2v")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_uq8dd"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0s6f"]
+size = Vector3(50, 1, 50)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dqwfb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_uq8dd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_r0s6f")
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_e3jtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("2_0d0fa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_0d0fa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 5)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_0d0fa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
+
+[node name="HUD" parent="." instance=ExtResource("3_j0akm")]
+
+[node name="MobileControls" parent="." groups=["mobile_controls"] instance=ExtResource("4_mobile")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

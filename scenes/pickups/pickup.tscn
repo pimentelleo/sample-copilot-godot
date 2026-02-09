@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdjq2c7sxlvd6"]
+
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_ixv0s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6lnxm"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vj73j"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Pickup" type="Area3D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ixv0s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6lnxm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vj73j")
